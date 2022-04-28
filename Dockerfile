@@ -1,7 +1,5 @@
 FROM python:3.9
 
-ARG APP_ENV
-
 MAINTAINER Eric Rockstädt <eric_rockstaedt@yahoo.de>
 
 ENV PYTHONDONTWRITEBYTECODE=1
