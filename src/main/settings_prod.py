@@ -142,7 +142,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://api.track-mate.eu",
+    "https://www.track-mate.eu",
 ]
 
 # HTTPS settings
