@@ -17,6 +17,8 @@ import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
 
+DJANGO_ENV = os.environ.get('DJANGO_ENV', 'development')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,9 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if DJANGO_ENV == 'production':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+if DJANGO_ENV == 'production':
+    ALLOWED_HOSTS = ['.track-mate.eu', '46.101.186.104']
+else:
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -123,6 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+if DJANGO_ENV == 'production':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -141,6 +151,17 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+if DJANGO_ENV == 'production':
+    CORS_ALLOWED_ORIGINS = [
+        "https://www.track-mate.eu",
+    ]
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:3000",
+    ]
+
+if DJANGO_ENV == 'production':
+    # HTTPS settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # SSL redirect is handled by nginx
