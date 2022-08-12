@@ -22,4 +22,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            docker ps
+            cd ${{ secrets.APP_PATH }}
+            docker-compose -f docker-compose.production.yml up --build -d --force-recreate tm-django
