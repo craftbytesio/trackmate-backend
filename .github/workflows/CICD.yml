@@ -19,6 +19,6 @@ jobs:
        with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             ls trackmate/trackmate-backend
