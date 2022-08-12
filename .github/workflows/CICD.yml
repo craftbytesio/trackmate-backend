@@ -22,4 +22,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            ls trackmate/trackmate-backend
+            ls
+            whoami
