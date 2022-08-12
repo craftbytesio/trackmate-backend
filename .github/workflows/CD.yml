@@ -19,6 +19,6 @@ jobs:
       name: Build & push Docker image
       with:
         image: rockstaedt/trackmate-backend
-        registry: registry-url.io
+        registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
